@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2016 at 02:14 AM
+-- Generation Time: Apr 05, 2016 at 02:50 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `tbl_reports` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `description` text COLLATE utf8mb4_bin,
+  `comment` text COLLATE utf8mb4_bin NOT NULL,
   `file_url` varchar(200) COLLATE utf8mb4_bin NOT NULL,
   `status` int(1) NOT NULL,
   `create_by` int(11) NOT NULL,
@@ -107,20 +108,15 @@ CREATE TABLE IF NOT EXISTS `tbl_reports` (
   `approve_datetime` datetime NOT NULL,
   `feedback_datetime` datetime NOT NULL,
   `academic_years_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `tbl_reports`
 --
 
-INSERT INTO `tbl_reports` (`id`, `name`, `description`, `file_url`, `status`, `create_by`, `approve_by`, `feedback_by`, `create_datetime`, `approve_datetime`, `feedback_datetime`, `academic_years_id`) VALUES
-(10, 'wewe', 'ewewe', 'E:/Work/3.PHP/6.CourseMonitorReport/assets/files/Untitled9.png', 1, 4, 0, 0, '2016-04-03 15:09:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 6),
-(11, 'dsd', 'dsd', '', 1, 4, 0, 0, '2016-04-03 15:16:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 6),
-(12, 'sdsdsdxx', 'xsdds', '', 1, 4, 0, 0, '2016-04-03 15:18:04', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 6),
-(13, 'vcv', 'cvcv', 'E:/Work/3.PHP/6.CourseMonitorReport/assets/files/Untitled10.png', 1, 4, 0, 0, '2016-04-03 15:23:25', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4),
-(14, 'sdd', 'dsds', '', 1, 4, 0, 0, '2016-04-03 15:31:11', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4),
-(15, 'ds', 'dsd', '', 1, 4, 0, 0, '2016-04-03 15:37:15', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4),
-(16, 'dsdx', 'dsd', 'E:/Work/3.PHP/6.CourseMonitorReport/assets/files/Academic_English_Handbook_for_International_Students.pdf', 1, 4, 0, 0, '2016-04-03 15:37:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4);
+INSERT INTO `tbl_reports` (`id`, `name`, `description`, `comment`, `file_url`, `status`, `create_by`, `approve_by`, `feedback_by`, `create_datetime`, `approve_datetime`, `feedback_datetime`, `academic_years_id`) VALUES
+(30, 'test', 'aaaa', 'this is ok', 'E:/Work/3.PHP/6.CourseMonitorReport/course_report_monitoring/assets/files/Academic_English_Handbook_for_International_Students12.pdf', 3, 4, 5, 0, '2016-04-04 17:56:19', '2016-04-05 14:50:04', '0000-00-00 00:00:00', 4),
+(31, 'thong bao dong tien', 'dong tien nam 2016', 'sdsds', 'E:/Work/3.PHP/6.CourseMonitorReport/course_report_monitoring/assets/files/Academic_English_Handbook_for_International_Students_(1).pdf', 4, 4, 3, 0, '2016-04-05 14:26:36', '2016-04-05 14:30:12', '0000-00-00 00:00:00', 5);
 
 -- --------------------------------------------------------
 
@@ -135,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `name` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `role_id` int(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `tbl_users`
@@ -144,13 +140,14 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 INSERT INTO `tbl_users` (`id`, `account_name`, `password`, `name`, `email`, `role_id`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', '', 1),
 (2, 'chancellor', 'e10adc3949ba59abbe56e057f20f883e', 'Pro-Vice Chancellor', 'phucsystem@gmail.com', 2),
-(3, 'director', 'e10adc3949ba59abbe56e057f20f883e', 'Director of Learning and Quality', '', 3),
+(3, 'director', 'e10adc3949ba59abbe56e057f20f883e', 'Director of Learning and Quality', 'phucsystem@gmail.com', 3),
 (4, 'leader', 'e10adc3949ba59abbe56e057f20f883e', 'Course Leader', 'phucsystem@gmail.com', 4),
 (5, 'moderator', 'e10adc3949ba59abbe56e057f20f883e', 'Course Moderator', 'phucsystem@gmail.com', 5),
 (7, 'sdads', '4297f44b13955235245b2497399d7a93', '111', 'phucsystem@gmail.com', 1),
 (9, 'leader2', 'e10adc3949ba59abbe56e057f20f883e', 'Leader 2', 'phucsystem@gmail.com', 4),
 (10, 'moderator2', 'e10adc3949ba59abbe56e057f20f883e', 'moderator2', 'phucsystem@gmail.com', 5),
-(12, 'chancellor2', '4297f44b13955235245b2497399d7a93', '123123', 'phucsystem@gmail.com', 2);
+(13, 'user1', 'e10adc3949ba59abbe56e057f20f883e', 'demo', 'phucsystem@gmail.com', 2),
+(14, 'guest', 'e10adc3949ba59abbe56e057f20f883e', 'guest', 'phucsystem@gmail.com', 6);
 
 --
 -- Indexes for dumped tables
@@ -209,12 +206,12 @@ ALTER TABLE `tbl_faculties`
 -- AUTO_INCREMENT for table `tbl_reports`
 --
 ALTER TABLE `tbl_reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

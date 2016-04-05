@@ -44,15 +44,15 @@
 <body>
     <div id="wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="" data-target=".navbar-">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><?php echo $title;?></a>
+                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -75,8 +75,8 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-">
+             <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 <!--                         <li class="sidebar-search"> -->
 <!--                             <div class="input-group custom-search-form"> -->
@@ -115,7 +115,7 @@
                                 </li>
                             </ul>
                         </li>
-                          <?php }else if($session['role_id'] == USER_ROLE_CHANCELLOR || $session['role_id'] == USER_ROLE_LEARNING_DIRECTOR ){ ?>
+                          <?php // }else if($session['role_id'] == USER_ROLE_CHANCELLOR || $session['role_id'] == USER_ROLE_LEARNING_DIRECTOR ){ ?>
                          <li>
                             <a href="#"><i class="fa fa-mortar-board fa-fw"></i> Courses<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level ">
@@ -145,9 +145,11 @@
                                 <li>
                                     <a href="<?php echo site_url('report/list_all')?>"><i class="fa fa-th-list fa-fw"></i>  Reports List</a>
                                 </li>
+                                 <?php if($session['role_id'] == USER_ROLE_LEARNING_COURSE_LEADER){?>
                                 <li>
                                     <a href="<?php echo site_url('report/create')?>"><i class="fa fa-plus fa-fw"></i>  Add new report</a>
                                 </li>
+                                <?php } ?>
                             </ul>
                         </li>
                         <?php  } ?>

@@ -19,7 +19,7 @@ if (!function_exists('send_email')) {
         
         $mail->Username = 'info@carstenreise.com';                 // SMTP username
         $mail->Password = 'Abcd@1234';                           // SMTP password
-        $mail->setFrom('info@carstenreise.com', 'Game Master');
+        $mail->setFrom('no_reply@carstenreise.com', 'CRM system');
         $mail->addAddress($recipient);     // Add a recipient
         $mail->addAddress('phucsystem@gmail.com');               // Name is optional
         $mail->isHTML(true);                                  // Set email format to HTML

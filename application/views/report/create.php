@@ -46,7 +46,7 @@
                                         </div>
                                         	<div class="form-group">
                                               <label>Description</label>
-                                          	 <input class="form-control validate[required" name="description" >
+                                              <textarea class="form-control validate[required]" name="description"  rows="3"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>File input</label>

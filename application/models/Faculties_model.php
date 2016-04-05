@@ -28,6 +28,28 @@ class Faculties_model extends CI_Model {
         }
         return array();
     }
+    
+    function getFacultiesByChancellorId($id) {
+    	// Get the user details
+    	$this->db->select("*");
+    	$this->db->where("vice_chancellor_users_id", $id);
+    	$query = $this->db->get('tbl_faculties');
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	}
+    	return array();
+    }
+    
+    function getFacultiesByLearningDirectorId($id) {
+    	// Get the user details
+    	$this->db->select("*");
+    	$this->db->where("learning_director_users_id", $id);
+    	$query = $this->db->get('tbl_faculties');
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	}
+    	return array();
+    }
 
 
     function create() {

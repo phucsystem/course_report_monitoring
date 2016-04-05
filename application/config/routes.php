@@ -80,3 +80,6 @@ $route['report/create'] = 'report/create';
 $route['report/edit/(:num)'] = 'report/edit/$1';
 $route['report/delete/(:num)'] = 'report/delete/$1';
 $route['report/download/(:num)'] = 'report/download/$1';
+$route['report/view/(:num)'] = 'report/view/$1';
+$route['report/approve/(:num)'] = 'report/approve/$1';
+$route['report/comment/(:num)'] = 'report/comment/$1';

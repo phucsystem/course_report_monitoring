@@ -28,7 +28,17 @@ class Courses_model extends CI_Model {
         }
         return array();
     }
-
+    
+    function getCoursesByFacultiesIds($ids_array) {
+    	// Get the user details
+    	$this->db->select("*");
+    	$this->db->where_in("faculties_id", $ids_array);
+    	$query = $this->db->get('tbl_courses');
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	}
+    	return array();
+    }
 
     function create() {
     	

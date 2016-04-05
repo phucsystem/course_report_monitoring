@@ -39,6 +39,28 @@ class Years_model extends CI_Model {
     	}
     	return array();
     }
+    
+    function getYearsByCourseModeratorId($id) {
+    	// Get the user details
+    	$this->db->select("*");
+    	$this->db->where("course_moderator_users_id", $id);
+    	$query = $this->db->get('tbl_academic_years');
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	}
+    	return array();
+    }
+    
+    function getYearsByCoursesIds($ids_array) {
+    	// Get the user details
+    	$this->db->select("*");
+    	$this->db->where_in("courses_id", $ids_array);
+    	$query = $this->db->get('tbl_academic_years');
+    	if ($query->num_rows() > 0) {
+    		return $query->result_array();
+    	}
+    	return array();
+    }
 
 
     function create() {
