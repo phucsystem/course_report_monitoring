@@ -37,7 +37,7 @@
                                             <td><?php echo (!empty($users[$report['create_by']]))? $users[$report['create_by']]['name'] :''?></td>
                                             <td><?php echo $report['create_datetime']?></td>
                                             <td><?php echo (!empty($users[$report['approve_by']]))? $users[$report['approve_by']]['name'] :''?></td>
-                                            <td><?php echo $report['approve_datetime']?> <?php if($report['late'] == true){?><span style='color:red'>Late Reponse</span><?php } ?></td>
+                                            <td><?php echo ( $report['approve_datetime'] == '0000-00-00 00:00:00') ?'' :$report['approve_datetime']?> <?php if($report['late'] == true){?><span style='color:red'>Late Reponse</span><?php } ?></td>
                                             <td class="left">
                                             <?php if($session['role_id'] == USER_ROLE_CHANCELLOR || $session['role_id'] == USER_ROLE_LEARNING_DIRECTOR){?>
                                             <button type="button" data-toggle="tooltip" data-placement="top" title="Comment" class="btn btn-primary btn-circle" onclick="location.href = '<?php echo site_url('report/comment') .'/'. $report['id']?>';"><i class="fa fa-pencil"></i>

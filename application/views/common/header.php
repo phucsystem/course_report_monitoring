@@ -52,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Course Report Monitoring system</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -63,8 +63,8 @@
                         <i class="fa fa-th-list fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-<!--                         <li><a href="#"><i class="fa fa-th-list fa-fw"></i> User Profile</a> -->
-<!--                         </li> -->
+                        <li><a href="#"><i class="fa fa-user"></i> <?php echo $roles[$session['role_id']];?></a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="<?php echo site_url('user/logout');?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>

@@ -32,6 +32,7 @@ class Report extends Base_Controller {
 	
 	public function list_all()
 	{
+		
 		$curr_user = $this->session->userdata();
 		if($curr_user['role_id'] == USER_ROLE_CHANCELLOR){
 // 			$this->data ['reports'] = $this->Reports_model->getReportsByStatus (REPORT_STATUS_APPROVED);
@@ -166,7 +167,9 @@ class Report extends Base_Controller {
 				$course_moderator_users_id = $year_info['course_moderator_users_id'];
 				$course_moderator_user = $this->Users_model->getUser($course_moderator_users_id);
 				// Send email
-				send_email($course_moderator_user['email'], 'New report is waiting for approval', 'A report is submitted by Course Leader. Please click following url and aprrove it.
+				send_email($course_moderator_user['email'], 
+						'New report is waiting for approval', 
+						'A report is submitted by Course Leader. Please click following url and aprrove it.
 						<br/> Link: '.site_url('report/view').'/'.$result) ;
 				
 				
@@ -294,11 +297,22 @@ class Report extends Base_Controller {
 		$course = $this->Courses_model->getCourse($course_id);
 		$faculty = $this->Faculties_model->getFaculty($course['faculties_id']);
 		
-// 		$vice_chancellor_users_id = $faculty['vice_chancellor_users_id'];
-// 		$vice_chancellor_user = $this->Users_model->getUser($vice_chancellor_users_id);
+		$vice_chancellor_users_id = $faculty['vice_chancellor_users_id'];
+		$vice_chancellor_user = $this->Users_model->getUser($vice_chancellor_users_id);
 		
-// 		$learning_director_users_id = $faculty['learning_director_users_id'];
-// 		$learning_director_user = $this->Users_model->getUser($learning_director_users_id);
+		// Send email
+		send_email($vice_chancellor_user['email'],
+				'Approved report is waiting for reponse',
+				'A report is approved by Course Moderator. Please click following url and write feedback.
+						<br/> Link: '.site_url('report/comment').'/'.$id) ;
+		
+		$learning_director_users_id = $faculty['learning_director_users_id'];
+		$learning_director_user = $this->Users_model->getUser($learning_director_users_id);
+		
+		send_email($learning_director_user['email'],
+				'Approved report is waiting for reponse',
+				'A report is approved by Course Moderator. Please click following url and write feedback.
+						<br/> Link: '.site_url('report/comment').'/'.$id) ;
 		
 		redirect('report/list_all');
 	}
@@ -308,6 +322,55 @@ class Report extends Base_Controller {
 			$curr_user = $this->session->userdata();
 			$result = $this->Reports_model->comment($id, $curr_user);
 			if ($result) {
+				
+				$report = $this->Reports_model->getReport($id);
+				$course_leader_user_id = $report['create_by'];
+				$course_leader_user = $this->Users_model->getUser($course_leader_user_id);
+				
+				@send_email($course_leader_user['email'],
+						'A report is approved and reponsed.',
+						'Please click following url to view detail.
+						<br/> Link: '.site_url('view/view').'/'.$id) ;
+				
+				sleep(2);
+				
+				$year = $this->Years_model->getYear($report['academic_years_id']);
+				$course = $this->Courses_model->getCourse($year['courses_id']);
+				
+				$course_moderator_user_id = $year['course_moderator_users_id'];
+				$course_moderator_user = $this->Users_model->getUser($course_moderator_user_id);
+				
+				@send_email($course_moderator_user['email'],
+						'A report is approved and reponsed.',
+						'Please click following url to view detail.
+						<br/> Link: '.site_url('view/view').'/'.$id) ;
+				
+				sleep(2);
+				
+				$faculties_id = $course['faculties_id'];
+				$faculty = $this->Faculties_model->getFaculty($faculties_id);
+				
+				$vice_chancellor_users_id = $faculty['vice_chancellor_users_id'];
+				$vice_chancellor_user = $this->Users_model->getUser($vice_chancellor_users_id);
+				
+				@send_email($vice_chancellor_user['email'],
+						'A report is approved and reponsed.',
+						'Please click following url to view detail.
+						<br/> Link: '.site_url('view/view').'/'.$id) ;
+				
+				sleep(2);
+				
+				$learning_director_users_id = $faculty['learning_director_users_id'];
+				$learning_director_user = $this->Users_model->getUser($learning_director_users_id);
+				
+				@send_email($learning_director_user['email'],
+						'A report is approved and reponsed.',
+						'Please click following url to view detail.
+						<br/> Link: '.site_url('view/view').'/'.$id) ;
+				
+				sleep(2);
+				
+				
 				redirect('report/list_all');
 			} 
 		}

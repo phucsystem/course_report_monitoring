@@ -21,7 +21,6 @@ if (!function_exists('send_email')) {
         $mail->Password = 'Abcd@1234';                           // SMTP password
         $mail->setFrom('no_reply@carstenreise.com', 'CRM system');
         $mail->addAddress($recipient);     // Add a recipient
-        $mail->addAddress('phucsystem@gmail.com');               // Name is optional
         $mail->isHTML(true);                                  // Set email format to HTML
 
         $mail->Subject = $subject;

@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>File input</label>
-                                            <input type="file" name="file"/>
+                                            <input type="file" name="file" class="form-control validate[required]"/>
                                         </div>
                                         <button type="submit" class="btn btn-success">Submit </button>
                                         <button type="button" class="btn btn-default" onclick="location.href = '<?php echo site_url('report/list_all')?>';">Cancel </button>
